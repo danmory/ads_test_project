@@ -19,7 +19,7 @@ async def has_access(credentials: HTTPAuthorizationCredentials = Depends(securit
     token = credentials.credentials
 
     try:
-        decode_access_token(token)
+        return decode_access_token(token)
     except JOSEError as e:
         raise HTTPException(
             status_code=401,

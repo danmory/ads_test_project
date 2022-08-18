@@ -13,6 +13,10 @@ class UserRegister(UserBase):
     password: str
 
 
+class UserInfo(UserBase):
+    name: str
+
+
 class UserLogin(UserBase):
     password: str
 

@@ -3,9 +3,8 @@ from datetime import datetime, timedelta
 from jose import jwt
 
 from common.config import settings
-
-from .schemas import UserBase
 from .models import User
+from .schemas import UserBase
 
 SECRET_KEY = settings.secret_key
 ALGORITHM = settings.algorithm
@@ -40,6 +39,7 @@ def construct_authentication_report(result: bool, detail: str | None, user: User
         "detail": detail,
         "user": user,
     }
+
 
 def construct_token_response(access_token: str):
     return {"access_token": access_token, "token_type": "Bearer"}
