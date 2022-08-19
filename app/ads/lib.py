@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 
 from . import models
-from auth.models import User
+from app.auth.models import User
 
 
 def is_delete_permitted(ad_to_del: models.Ad, user: User):

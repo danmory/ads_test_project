@@ -1,4 +1,4 @@
-from auth.lib import decode_access_token
+from app.auth.lib import decode_access_token
 from .database import SessionLocal
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer

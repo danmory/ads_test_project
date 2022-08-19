@@ -2,7 +2,7 @@ from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt
 
-from common.config import settings
+from app.common.config import settings
 from .models import User
 from .schemas import UserBase
 

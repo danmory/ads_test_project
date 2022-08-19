@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from . import models, schemas
-from auth.models import User
+from app.auth.models import User
 
 
 def get_all_ads(db: Session, skip: int, limit: int) -> list[models.Ad]:
