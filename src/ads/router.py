@@ -12,8 +12,11 @@ router = APIRouter()
 @router.get("/all", response_model=list[schemas.AdResponse])
 def read_all_ads(db: Session = Depends(get_db),
                  skip: int = Query(default=0),
-                 limit: int = Query(default=100)
+                 limit: int = Query(default=100),
+                 author_id: int | None = Query(default=None)
                  ):
+    if author_id is not None:
+        return crud.get_ads_by_author_id(db, author_id, skip, limit)
     return crud.get_all_ads(db, skip, limit)
 
 

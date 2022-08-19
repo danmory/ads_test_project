@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from . import models, schemas
+from auth.models import User
 
 
 def get_all_ads(db: Session, skip: int, limit: int) -> list[models.Ad]:
@@ -24,3 +25,7 @@ def delete_ad(db: Session, ad_id: int):
     if db_item is not None:
         db.delete(db_item)
         db.commit()
+
+
+def get_ads_by_author_id(db: Session, author_id: int, skip: int, limit: int) -> list[models.Ad]:
+    return db.query(User).filter(User.id == author_id).first().ads[skip:skip+limit] # type:ignore
