@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
-from app.common.database import Base
+from common.database import Base
 
 
 class Ad(Base):
