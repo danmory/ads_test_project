@@ -20,12 +20,16 @@ Technological Stack:
 * pip
 * Installed libraries: <code>pip install -r requirements.txt</code>
 
-## How to run
+## How to run application
 
 * Setup all requirements described in the section above
 * Start Postgres
 * Initialize *.env* file with settings presented in *.env.example* 
-* Inside *src* directory run <code>uvicorn main:app --reload --env-file ../.env </code>
+* Inside *app* directory run <code>uvicorn main:app --reload --env-file ../.env </code>
+
+## How to run tests
+
+* In root directory run <code>pytest tests/</code>
 
 ## Future plans
 
