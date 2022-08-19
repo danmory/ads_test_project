@@ -14,8 +14,8 @@ def register(user: UserRegister, db: Session = Depends(get_db)):
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     db_user = crud.create_user(db, user)
-    access_token = lib.create_access_token(UserBase.from_orm(db_user))
-    return lib.construct_token_response(access_token)
+    access_token, expire = lib.create_access_token(UserBase.from_orm(db_user))
+    return lib.construct_token_response(access_token, expire)
 
 
 @router.post("/login", response_model=Token)
@@ -23,9 +23,9 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     auth_result = crud.authenticate_user(db, user.email, user.password)
     if not auth_result["result"]:
         raise HTTPException(status_code=401, detail=auth_result["detail"])
-    access_token = lib.create_access_token(
+    access_token, expire = lib.create_access_token(
         UserBase.from_orm(auth_result["user"]))
-    return lib.construct_token_response(access_token)
+    return lib.construct_token_response(access_token, expire)
 
 
 @router.post("/check", dependencies=[Depends(has_access)])

@@ -18,7 +18,7 @@ def create_access_token(data: UserBase):
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+    return encoded_jwt, expire
 
 
 def verify_password(plain_password, hashed_password):
@@ -41,5 +41,5 @@ def construct_authentication_report(result: bool, detail: str | None, user: User
     }
 
 
-def construct_token_response(access_token: str):
-    return {"access_token": access_token, "token_type": "Bearer"}
+def construct_token_response(access_token: str, expire: datetime):
+    return {"access_token": access_token, "token_type": "Bearer", "expire": expire}

@@ -1,3 +1,4 @@
+import datetime
 from pydantic import BaseModel, EmailStr
 
 
@@ -24,3 +25,4 @@ class UserLogin(UserBase):
 class Token(BaseModel):
     access_token: str
     token_type: str
+    expire: datetime.datetime # UTC time
